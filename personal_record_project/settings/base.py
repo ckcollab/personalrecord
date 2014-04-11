@@ -20,6 +20,7 @@ DATABASE_NAME = os.environ.get("DATABASE_NAME")
 DATABASE_USERNAME = os.environ.get("DATABASE_USERNAME")
 DATABASE_PASSWORD = os.environ.get("DATABASE_PASSWORD")
 DATABASE_HOST = os.environ.get("DATABASE_HOST", '')
+DATABASE_PORT = os.environ.get("DATABASE_PORT", '')
 SENTRY_DSN = os.environ.get("SENTRY_DSN", '')
 
 DATABASES = {
@@ -29,12 +30,12 @@ DATABASES = {
         'USER': DATABASE_USERNAME,
         'PASSWORD': DATABASE_PASSWORD,
         'HOST': DATABASE_HOST,
-        'PORT': '',
+        'PORT': DATABASE_PORT,
     }
 }
 
 # Include other apps
-PROJECT_ROOT = abspath(join(os.path.curdir, "personal_record"))
+PROJECT_ROOT = abspath(join(os.path.curdir, "personal_record_project"))
 sys.path.append(join(PROJECT_ROOT, 'apps'))
 
 # Directories
@@ -62,7 +63,6 @@ USE_TZ = False
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'djangular.finders.NamespacedAngularAppDirectoriesFinder'
 )
 
 # Make this unique, and don't share it with anybody.
@@ -106,17 +106,18 @@ BASE_AND_LIBRARY_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    #'allauth',
-    #'allauth.account',
-    #'allauth.socialaccount',
-    #'allauth.socialaccount.providers.facebook',
-    #'django_extensions',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.facebook',
+    'django_extensions',
     'gunicorn',
-    'djangular',
+    'south',
 )
 
 PERSONAL_RECORD_APPS = (
     'personal_record',
+    'home',
 )
 
 INSTALLED_APPS = BASE_AND_LIBRARY_APPS + PERSONAL_RECORD_APPS
@@ -153,7 +154,7 @@ LOGGING = {
     'disable_existing_loggers': True,
     'root': {
         'level': 'WARNING',
-        'handlers': ['sentry'],
+        #'handlers': ['sentry'],
     },
     'formatters': {
         'verbose': {
@@ -161,10 +162,10 @@ LOGGING = {
         },
     },
     'handlers': {
-        'sentry': {
-            'level': 'ERROR',
-            'class': 'raven.contrib.django.raven_compat.handlers.SentryHandler',
-        },
+        #'sentry': {
+        #    'level': 'ERROR',
+        #    'class': 'raven.contrib.django.raven_compat.handlers.SentryHandler',
+        #},
         'console': {
             'level': 'DEBUG',
             'class': 'logging.StreamHandler',

@@ -2,7 +2,7 @@
 import os
 import sys
 
-sys.path.append("ggnore_project/apps/")
+sys.path.append("personal_record_project/apps/")
 
 if __name__ == "__main__":
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "personal_record_project.settings.development")
