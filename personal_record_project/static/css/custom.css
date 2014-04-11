@@ -1,0 +1,64 @@
+/* Global
+-------------------------------------------------- */
+/* Padding below the footer and lighter body text */
+
+body {
+    padding: 65px 0;
+    color: #a8a8a8;
+    background-color: rgba(12, 12, 12, 1);
+}
+
+
+
+/* Nav Bar
+-------------------------------------------------- */
+
+.navbar {
+    background: url('/static/img/tweed.png');
+    border-bottom: 1px solid rgba(14, 29, 51, 0.53);
+}
+.navbar a, .nav>li>a { color: #fff; }
+.navbar a:hover, .nav>li>a:hover { color: #efefef; }
+.navbar-nav>.active>a, .navbar-nav>.active>a:hover, .navbar-nav>.active>a:focus {
+    color: #BEFFFF;
+    background-color: rgba(231, 231, 231, 0.13);
+    font-weight: bold;
+}
+.nav li:hover { color: #efefef; background-color: rgba(31, 31, 31, 0.33); }
+
+.navbar-collapse { border-top: 0; }
+
+.icon-calendar,
+.icon-user,
+.icon-power-off {
+    color: #888888;
+}
+
+
+/* Header
+-------------------------------------------------- */
+
+#logo_button { margin-top: 10px; }
+
+
+/* Form
+-------------------------------------------------- */
+
+#find_match_form .radio { margin-left: 20px; }
+#find_match_form_submit { float: left; }
+
+
+/* RESPONSIVE CSS
+-------------------------------------------------- */
+
+@media (max-width: 768px) {
+    /* Line up navs vertical */
+    .nav > li > a { text-align: center; }
+    .nav > li { border-bottom: 2px solid rgba(24, 117, 102, 0.31); }
+    .navbar-nav { margin: 0.5px -15px; }
+
+    /* Center find match */
+    #find_match_form_submit { float: none; display: block; margin: 0 15px;}
+    #find_match_form input[type="radio"] { float: none; }
+}
+
