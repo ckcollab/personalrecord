@@ -6,8 +6,9 @@ from django.db import models
 
 
 class Migration(SchemaMigration):
-    depends_on = (
-        ("allauth", "0001"),
+
+    needed_by = (
+        ("socialaccount", "0001_initial"),
     )
 
     def forwards(self, orm):
