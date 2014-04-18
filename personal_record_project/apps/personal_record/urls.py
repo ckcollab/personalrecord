@@ -5,6 +5,7 @@ from django.conf import settings
 urlpatterns = patterns(
     '',
     url(r'^', include('home.urls')),
+    (r'^accounts/', include('allauth.urls')),
 )
 
 if settings.DEBUG:

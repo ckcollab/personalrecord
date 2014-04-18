@@ -19,7 +19,7 @@ MANAGERS = ADMINS
 DATABASE_NAME = os.environ.get("DATABASE_NAME")
 DATABASE_USERNAME = os.environ.get("DATABASE_USERNAME")
 DATABASE_PASSWORD = os.environ.get("DATABASE_PASSWORD")
-DATABASE_HOST = os.environ.get("DATABASE_HOST", '')
+DATABASE_HOST = os.environ.get("DATABASE_HOST", 'localhost')
 DATABASE_PORT = os.environ.get("DATABASE_PORT", '')
 SENTRY_DSN = os.environ.get("SENTRY_DSN", '')
 
@@ -109,6 +109,7 @@ BASE_AND_LIBRARY_APPS = (
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.facebook',
     'django_extensions',
     'gunicorn',
@@ -118,6 +119,7 @@ BASE_AND_LIBRARY_APPS = (
 PERSONAL_RECORD_APPS = (
     'personal_record',
     'home',
+    'user_profile',
 )
 
 INSTALLED_APPS = BASE_AND_LIBRARY_APPS + PERSONAL_RECORD_APPS
@@ -143,7 +145,7 @@ SOCIALACCOUNT_PROVIDERS = {
 }
 
 LOGIN_REDIRECT_URL = '/'
-AUTH_PROFILE_MODULE = 'profiles.UserProfile'
+AUTH_USER_MODEL = "user_profile.UserProfile"
 
 # Nose
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
