@@ -12,7 +12,7 @@ class Command(BaseCommand):
     help = 'Creates admin account and user profile to go with it'
 
     def handle(self, *args, **options):
-        print "Initializing Facebook"
+        print "Creating Admin"
         # Setup admin
         u = UserProfile.objects.get_or_create(username='admin')[0]
         u.set_password('admin')
@@ -22,6 +22,8 @@ class Command(BaseCommand):
         u.save()
 
         print " --> Created admin//admin"
+
+        print "Creating Facebook allauth settings"
 
         # Setup Facebook
         FACEBOOK_API_CLIENT_ID = os.environ.get("FACEBOOK_API_CLIENT_ID", None)
