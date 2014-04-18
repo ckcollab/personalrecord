@@ -22,6 +22,9 @@ DATABASE_PASSWORD = os.environ.get("DATABASE_PASSWORD")
 DATABASE_HOST = os.environ.get("DATABASE_HOST", 'localhost')
 DATABASE_PORT = os.environ.get("DATABASE_PORT", '')
 SENTRY_DSN = os.environ.get("SENTRY_DSN", '')
+RAVEN_CONFIG = {
+    'dsn': SENTRY_DSN
+}
 
 DATABASES = {
     'default': {
@@ -113,6 +116,7 @@ BASE_AND_LIBRARY_APPS = (
     'allauth.socialaccount.providers.facebook',
     'django_extensions',
     'gunicorn',
+    'raven.contrib.django.raven_compat',
     'south',
 )
 
