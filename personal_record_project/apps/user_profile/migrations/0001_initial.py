@@ -7,7 +7,7 @@ from django.db import models
 
 class Migration(SchemaMigration):
     depends_on = (
-        ("allauth", "0001")
+        ("allauth", "0001"),
     )
 
     def forwards(self, orm):
