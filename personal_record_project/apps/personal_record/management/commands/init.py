@@ -54,6 +54,9 @@ class Command(BaseCommand):
         GOOGLE_OAUTH2_CLIENT_ID = os.environ.get("GOOGLE_OAUTH2_CLIENT_ID", None)
         GOOGLE_OAUTH2_CLIENT_SECRET = os.environ.get("GOOGLE_OAUTH2_CLIENT_SECRET", None)
 
+        if not GOOGLE_OAUTH2_CLIENT_ID or not GOOGLE_OAUTH2_CLIENT_SECRET:
+            raise ValueError("Google env vars not set!")
+
         google, created = SocialApp.objects.get_or_create(
             provider="google",
             name="google",
