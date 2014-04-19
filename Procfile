@@ -1,1 +1,1 @@
-web: waitress-serve personal_record_project.apps.personal_record.wsgi:application
+web: waitress-serve --port=$PORT wsgi:application
