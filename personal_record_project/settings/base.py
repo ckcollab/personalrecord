@@ -3,18 +3,9 @@ import sys
 
 from os.path import abspath, join
 
-ADMINS = (
-    # ('Your Name', 'your_email@example.com'),
-)
-
 ### Heroku
-
 ALLOWED_HOSTS = ['*', ]
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-
-### Heroku
-
-MANAGERS = ADMINS
 
 DATABASE_NAME = os.environ.get("DATABASE_NAME")
 DATABASE_USERNAME = os.environ.get("DATABASE_USERNAME")
@@ -69,10 +60,8 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 )
 
-# Make this unique, and don't share it with anybody.
-SECRET_KEY = 'p*)lhh6km9=$*@3fikdh)-g3pyv2e4)ma$p5i6ri)vghh4rus7'
+SECRET_KEY = 'p*)lzz6km9=$*@3fikdh)-g3pyv2e4)ma$p5i6ri)vghh4rus7'
 
-# List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
@@ -81,8 +70,9 @@ TEMPLATE_LOADERS = (
 TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.request",
     'django.contrib.auth.context_processors.auth',
-    "allauth.account.context_processors.account",
-    "allauth.socialaccount.context_processors.socialaccount",
+    'django.core.context_processors.static',
+    'social.apps.django_app.context_processors.backends',
+    'social.apps.django_app.context_processors.login_redirect',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -110,11 +100,8 @@ BASE_AND_LIBRARY_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'allauth.socialaccount.providers.google',
-    'allauth.socialaccount.providers.facebook',
+    'social.apps.django_app.default',
+
     'django_extensions',
     'gunicorn',
     'raven.contrib.django.raven_compat',
@@ -129,25 +116,22 @@ PERSONAL_RECORD_APPS = (
 
 INSTALLED_APPS = BASE_AND_LIBRARY_APPS + PERSONAL_RECORD_APPS
 
-# allauth
-ACCOUNT_AUTHENTICATION_METHOD = "username_email"
-
+# python-social-auth
 AUTHENTICATION_BACKENDS = (
-    # Needed to login by username in Django admin, regardless of `allauth`
-    "django.contrib.auth.backends.ModelBackend",
-
-    # `allauth` specific authentication methods, such as login by e-mail
-    "allauth.account.auth_backends.AuthenticationBackend",
+   'social.backends.facebook.FacebookOAuth2',
+   'social.backends.google.GoogleOAuth2',
+   'social.backends.twitter.TwitterOAuth',
+   'django.contrib.auth.backends.ModelBackend',
 )
 
-SOCIALACCOUNT_PROVIDERS = {
-    'facebook': {
-        'SCOPE': ['email'],
-        'AUTH_PARAMS': {'auth_type': 'reauthenticate'},
-        'METHOD': 'js_sdk',
-        'LOCALE_FUNC': lambda request: 'en_US'
-    }
-}
+SOCIAL_AUTH_FACEBOOK_KEY  = os.environ.get("SOCIAL_AUTH_FACEBOOK_KEY ", None)
+SOCIAL_AUTH_FACEBOOK_SECRET  = os.environ.get("SOCIAL_AUTH_FACEBOOK_SECRET", None)
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY  = os.environ.get("SOCIAL_AUTH_GOOGLE_OAUTH2_KEY", None)
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET  = os.environ.get("SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET", None)
+
+SOCIAL_AUTH_TWITTER_KEY = os.environ.get("SOCIAL_AUTH_TWITTER_KEY", None)
+SOCIAL_AUTH_TWITTER_SECRET = os.environ.get("SOCIAL_AUTH_TWITTER_SECRET", None)
 
 LOGIN_REDIRECT_URL = '/'
 AUTH_USER_MODEL = "user_profile.UserProfile"
