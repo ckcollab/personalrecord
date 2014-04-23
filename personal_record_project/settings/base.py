@@ -135,6 +135,7 @@ SOCIAL_AUTH_TWITTER_SECRET = os.environ.get("SOCIAL_AUTH_TWITTER_SECRET", None)
 
 LOGIN_REDIRECT_URL = '/'
 AUTH_USER_MODEL = "user_profile.UserProfile"
+SOCIAL_AUTH_USER_MODEL = "user_profile.UserProfile"
 
 # Nose
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
