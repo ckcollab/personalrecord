@@ -1,5 +1,6 @@
 from django.core.exceptions import ObjectDoesNotExist
 
+from rest_framework import mixins
 from rest_framework import permissions
 from rest_framework import status
 from rest_framework import generics
@@ -14,3 +15,10 @@ class WorkoutListView(generics.CreateAPIView, generics.ListAPIView, generics.Gen
     queryset = Workout.objects.all()
     serializer_class = WorkoutSerializer
 
+
+class WorkoutDetailView(mixins.RetrieveModelMixin, generics.GenericAPIView):
+    queryset = Workout.objects.all()
+    serializer_class = WorkoutSerializer
+
+    def get(self, request, *args, **kwargs):
+        return self.retrieve(request, *args, **kwargs)

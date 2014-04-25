@@ -14,5 +14,11 @@ urlpatterns = patterns(
         name='workout_list'
     ),
 
+    # Workout detail, GET/PUT
+    url(
+        r'^workout/(?P<pk>[0-9]+)/$',
+        workout.WorkoutDetailView.as_view(),
+        name='workout_detail'
+    ),
 )
 
