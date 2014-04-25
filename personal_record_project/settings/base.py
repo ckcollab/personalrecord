@@ -105,12 +105,15 @@ BASE_AND_LIBRARY_APPS = (
     'gunicorn',
     'raven.contrib.django.raven_compat',
     'south',
+    'rest_framework',
 )
 
 PERSONAL_RECORD_APPS = (
     'personal_record',
     'home',
     'user_profile',
+    'workout',
+    'api'
 )
 
 INSTALLED_APPS = BASE_AND_LIBRARY_APPS + PERSONAL_RECORD_APPS
