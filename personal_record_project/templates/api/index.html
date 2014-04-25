@@ -1,0 +1,99 @@
+{% load url from future %}
+{% load rest_framework %}
+<!DOCTYPE html>
+<html>
+    <head>
+    {% block head %}
+
+        {% block meta %}
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <meta name="robots" content="NONE,NOARCHIVE" />
+        {% endblock %}
+
+        <title>{% block title %}Django REST framework{% endblock %}</title>
+
+        {% block style %}
+        {% block bootstrap_theme %}
+            <link rel="stylesheet" type="text/css" href="{% static "rest_framework/css/bootstrap.min.css" %}"/>
+            <link rel="stylesheet" type="text/css" href="{% static "rest_framework/css/bootstrap-tweaks.css" %}"/>
+        {% endblock %}
+        <link rel="stylesheet" type="text/css" href="{% static "rest_framework/css/prettify.css" %}"/>
+        <link rel="stylesheet" type="text/css" href="{% static "rest_framework/css/default.css" %}"/>
+        {% endblock %}
+
+    {% endblock %}
+    </head>
+
+  <body class="{% block bodyclass %}{% endblock %} container">
+
+    <div class="wrapper">
+
+    <div class="navbar {% block bootstrap_navbar_variant %}navbar-inverse{% endblock %}">
+        <div class="navbar-inner">
+            <div class="container-fluid">
+                <span href="/">
+                    {% block branding %}<a class='brand' rel="nofollow" href='http://www.django-rest-framework.org'>Django REST framework <span class="version">{{ version }}</span></a>{% endblock %}
+                </span>
+                <ul class="nav pull-right">
+                    {% block userlinks %}
+                        {% if user.is_authenticated %}
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    {{ user }}
+                                    <b class="caret"></b>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>{% optional_logout request %}</li>
+                                </ul>
+                            </li>
+                        {% else %}
+                            <li>{% optional_login request %}</li>
+                        {% endif %}
+                    {% endblock %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Content -->
+    <div id="content">
+
+
+        <div class="content-main" style="margin-top: 100px;">
+            <div class="page-header"><h1>The API</h1></div>
+
+            <h2 style="margin-top: 100px;">Workout list and creation</h2>
+            <p>Welcome to the Personal Record API. This is in very early development, so expect lots of changes!</p>
+            <pre>/api/workout</pre><b>GET POST</b><br> list workouts or create one
+
+            <h2 style="margin-top: 100px;">Workout details, update and deletion</h2>
+            <pre>/api/workout/&lt;id&gt;/</pre><b>GET PUT DELETE</b><br> modify a specific workout
+
+
+
+        </div>
+
+
+        </div>
+        <!-- END content-main -->
+
+    </div>
+    <!-- END Content -->
+
+        <div id="push"></div>
+
+    </div>
+
+    </div><!-- ./wrapper -->
+
+    {% block footer %}
+    {% endblock %}
+
+    {% block script %}
+    <script src="{% static "rest_framework/js/jquery-1.8.1-min.js" %}"></script>
+    <script src="{% static "rest_framework/js/bootstrap.min.js" %}"></script>
+    <script src="{% static "rest_framework/js/prettify-min.js" %}"></script>
+    <script src="{% static "rest_framework/js/default.js" %}"></script>
+    {% endblock %}
+  </body>
+</html>

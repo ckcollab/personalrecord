@@ -1,4 +1,5 @@
 from django.conf.urls import patterns, include, url
+from django.views.generic import TemplateView
 
 from .views import workout
 
@@ -6,6 +7,9 @@ from .views import workout
 urlpatterns = patterns(
     '',
     url(r'^auth/', include('rest_framework.urls', namespace='rest_framework')),
+
+    # Index
+    url(r'^$', TemplateView.as_view(template_name="api/index.html"), name="index"),
 
     # Workout list, GET/POST
     url(

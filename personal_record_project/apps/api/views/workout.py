@@ -19,7 +19,16 @@ class WorkoutListView(generics.CreateAPIView, generics.ListAPIView, generics.Gen
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
 
-class WorkoutDetailView(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, generics.GenericAPIView):
+class WorkoutDetailView(mixins.RetrieveModelMixin,
+                        mixins.UpdateModelMixin,
+                        mixins.DestroyModelMixin,
+                        generics.GenericAPIView):
+    '''
+    GET, PUT or DELETE a workout.
+
+    You must be the owner of the workout.
+
+    '''
     queryset = Workout.objects.all()
     serializer_class = WorkoutSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly)
@@ -33,3 +42,8 @@ class WorkoutDetailView(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, gene
         obj = get_object_or_404(Workout, **kwargs)
         self.check_object_permissions(request, obj)
         return self.update(request, *args, **kwargs)
+
+    def delete(self, request, *args, **kwargs):
+        obj = get_object_or_404(Workout, **kwargs)
+        self.check_object_permissions(request, obj)
+        return self.destroy(request, *args, **kwargs)
