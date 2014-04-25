@@ -16,9 +16,12 @@ class WorkoutListView(generics.CreateAPIView, generics.ListAPIView, generics.Gen
     serializer_class = WorkoutSerializer
 
 
-class WorkoutDetailView(mixins.RetrieveModelMixin, generics.GenericAPIView):
+class WorkoutDetailView(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, generics.GenericAPIView):
     queryset = Workout.objects.all()
     serializer_class = WorkoutSerializer
 
     def get(self, request, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)
+
+    def put(self, request, *args, **kwargs):
+        return self.update(request, *args, **kwargs);
