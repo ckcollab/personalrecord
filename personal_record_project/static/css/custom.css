@@ -2,10 +2,22 @@
 -------------------------------------------------- */
 /* Padding below the footer and lighter body text */
 body {
-  padding: 65px 20px;
   color: #a8a8a8;
   background-color: #0c0c0c;
 }
 .row {
   max-width: 1200px;
+}
+/*
+ * Header
+ */
+.navbar-right {
+  margin-right: 20px !important;
+}
+/*
+ * Content
+ */
+#content {
+  padding: 20px;
+  padding-top: 0;
 }
