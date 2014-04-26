@@ -1,6 +1,5 @@
 /* Global
 -------------------------------------------------- */
-/* Padding below the footer and lighter body text */
 
 body {
     color: #a8a8a8;
@@ -17,6 +16,11 @@ body {
     padding: 6px;
     background-color: hsl(209, 44%, 8%);
     border-color: hsl(192, 79%, 23%);
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 /*
@@ -43,4 +47,47 @@ body {
 #content {
     padding: 20px;
     padding-top: 0;
+}
+
+/*
+ * Search
+ */
+#workout_search {
+    input, select {
+        .placeholder(hsl(178, 48%, 25%));
+        color: #efefef;
+    }
+    input[name="weight"] {
+        width: 118px;
+    }
+
+    input[name="resp"] {
+        width: 60px;
+    }
+
+    .checkbox label {
+        margin-right: 15px;
+    }
+    .nothing_selected {
+        color: hsl(178, 48%, 25%);
+    }
+}
+
+/*
+ * Mixins
+ */
+// Placeholder text Mixin
+.placeholder(@color: false){
+    &::-webkit-input-placeholder {
+        color: @color;
+    }
+    &:-moz-placeholder {
+        color: @color;
+    }
+    &::-moz-placeholder {
+        color: @color;
+    }
+    &:-ms-input-placeholder {
+        color: @color;
+    }
 }

@@ -19,6 +19,8 @@
     <link href="{% static "css/custom.css" %}" rel="stylesheet">
 
     <link href="{% static "img/favicon.png" %}" rel="shortcut icon">
+
+    <script src="{% static "js/jquery.js" %}"></script>
 </head>
 
 <body {% block extra_body %}{% endblock %}>
@@ -68,11 +70,13 @@
         {% endblock %}
     </div>
 
-    <script src="{% static "js/jquery.js" %}"></script>
     <script src="{% static "js/jquery.cookie.js" %}"></script>
     <script src="{% static "js/modernizr.js" %}"></script>
     <script src="{% static "js/fastclick.js" %}"></script>
     <script src="{% static "js/holder.js" %}"></script>
     <script src="{% static "js/bootstrap.min.js" %}"></script>
+    <script src="{% static "js/knockout.js" %}"></script>
+    <script src="{% static "js/personal_record/app.js" %}"></script>
+    <!--<script src="{% static "js/angular.min.js" %}"></script>-->
 </body>
 </html>

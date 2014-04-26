@@ -1,6 +1,5 @@
 /* Global
 -------------------------------------------------- */
-/* Padding below the footer and lighter body text */
 body {
   color: #a8a8a8;
   background-color: #0c0c0c;
@@ -15,6 +14,11 @@ body {
   padding: 6px;
   background-color: #0b151d;
   border-color: #0c5669;
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 /*
  * Header
@@ -39,3 +43,41 @@ body {
   padding: 20px;
   padding-top: 0;
 }
+/*
+ * Search
+ */
+#workout_search input,
+#workout_search select {
+  color: #efefef;
+}
+#workout_search input::-webkit-input-placeholder,
+#workout_search select::-webkit-input-placeholder {
+  color: #215e5c;
+}
+#workout_search input:-moz-placeholder,
+#workout_search select:-moz-placeholder {
+  color: #215e5c;
+}
+#workout_search input::-moz-placeholder,
+#workout_search select::-moz-placeholder {
+  color: #215e5c;
+}
+#workout_search input:-ms-input-placeholder,
+#workout_search select:-ms-input-placeholder {
+  color: #215e5c;
+}
+#workout_search input[name="weight"] {
+  width: 118px;
+}
+#workout_search input[name="resp"] {
+  width: 60px;
+}
+#workout_search .checkbox label {
+  margin-right: 15px;
+}
+#workout_search .nothing_selected {
+  color: #215e5c;
+}
+/*
+ * Mixins
+ */

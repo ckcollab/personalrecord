@@ -1,8 +1,9 @@
 {% extends "base.html" %}
+{% load staticfiles %}
 
 {% block content %}
     <h1>Filters</h1>
-    <form class="form-inline" role="form">
+    <form id="workout_search" class="form-inline" role="form">
         <div class="form-group">
             <label class="sr-only" for="name">Lifter's Name</label>
             <input type="text" class="form-control" name="name" placeholder="Lifter's name">
@@ -10,45 +11,47 @@
 
         <div class="form-group">
             <label class="sr-only" for="weight">Weight lifted</label>
-            <input type="number" style="width: 118px;" class="form-control" name="weight" placeholder="weight lifted">
+            <input type="number" class="form-control" name="weight" placeholder="weight lifted">
         </div>
 
 
         <div class="form-group">
             <label class="sr-only" for="reps">Reps</label>
-            <input type="number" style="width: 60px;" class="form-control" name="reps" placeholder="reps">
-        </div>
-
-
-        <div class="checkbox">
-            <label>
-                <input type="checkbox"> Bench
-            </label>
-        </div>
-        <div class="checkbox">
-            <label>
-                <input type="checkbox"> Squat
-            </label>
-        </div>
-        <div class="checkbox">
-            <label>
-                <input type="checkbox"> Deadlift
-            </label>
+            <input type="number" class="form-control" name="reps" placeholder="reps">
         </div>
 
         <div class="form-group">
             <label class="sr-only" for="order_by">Order by</label>
-            <select name="order_by" class="form-control">
-                <option>Sort by</option>
-                <option>Bodyweight desc</option>
-                <option>Bodyweight asc</option>
-                <option>Weight lifted desc</option>
-                <option>Weight lifted asc</option>
+            <select id="workout_order_by" name="order_by" class="form-control nothing_selected">
+                <option value="" disabled selected style="display: none;">Sort by</option>
+                <option value="-weight">Weight lifted desc</option>
+                <option value="weight">Weight lifted asc</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label class="sr-only" for="exercise">Exercise</label>
+            <select name="exercise" class="form-control nothing_selected">
+                <option value="" disabled selected style="display: none;">Select exercise</option>
+                <option>Back Squat</option>
+                <option>Bench Press</option>
+                <option>Deadlift</option>
+                <option>Front Squat</option>
             </select>
         </div>
     </form>
 
     <h1>Results</h1>
 
-    <img data-src="holder.js/320x180" class="thumbnail" alt="...">
+    <!--<img data-src="holder.js/320x180" class="thumbnail" alt="...">-->
+
+    <div data-bind="foreach: workouts">
+        <div class="well">
+            <p data-bind="text: exercise"></p>
+
+            <p data-bind="text: weight"></p>
+        </div>
+    </div>
+
+    <script src="{% static "js/personal_record/home.js" %}"></script>
 {% endblock %}

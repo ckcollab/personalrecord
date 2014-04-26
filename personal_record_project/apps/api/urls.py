@@ -24,5 +24,19 @@ urlpatterns = patterns(
         workout.WorkoutDetailView.as_view(),
         name='workout_detail'
     ),
+
+    # Set list, GET
+    url(
+        r'^set/$',
+        workout.SetListView.as_view(),
+        name='set_list'
+    ),
+
+    # Set detail, GET
+    url(
+        r'^set/(?P<pk>[0-9]+)/$',
+        workout.SetDetailView.as_view(),
+        name='set_detail'
+    ),
 )
 

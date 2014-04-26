@@ -3,14 +3,14 @@ from django.shortcuts import get_object_or_404
 
 from rest_framework import mixins
 from rest_framework import permissions
-from rest_framework import status
+from rest_framework import filters
 from rest_framework import generics
 from rest_framework.response import Response
 
-from personal_record_project.apps.workout.models import Workout
+from personal_record_project.apps.workout.models import Workout, Set
 
 from api.permissions import IsOwnerOrReadOnly
-from api.serializers.workout import WorkoutSerializer
+from api.serializers.workout import WorkoutSerializer, SetSerializer
 
 
 class WorkoutListView(generics.CreateAPIView, generics.ListAPIView, generics.GenericAPIView):
@@ -37,8 +37,6 @@ class WorkoutDetailView(mixins.RetrieveModelMixin,
         return self.retrieve(request, *args, **kwargs)
 
     def put(self, request, *args, **kwargs):
-        print args
-        print kwargs
         obj = get_object_or_404(Workout, **kwargs)
         self.check_object_permissions(request, obj)
         return self.update(request, *args, **kwargs)
@@ -47,3 +45,21 @@ class WorkoutDetailView(mixins.RetrieveModelMixin,
         obj = get_object_or_404(Workout, **kwargs)
         self.check_object_permissions(request, obj)
         return self.destroy(request, *args, **kwargs)
+
+
+class SetListView(generics.ListAPIView):
+    queryset = Set.objects.all()
+    serializer_class = SetSerializer
+    #filter_class = SetFilter
+    filter_backends = (filters.DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter)
+    filter_fields = ('exercise', 'reps', 'weight')
+    search_fields = ('name', 'notes')
+    ordering_fields = ('reps', 'weight')
+
+
+class SetDetailView(mixins.RetrieveModelMixin, generics.GenericAPIView):
+    queryset = Set.objects.all()
+    serializer_class = SetSerializer
+
+    def get(self, request, *args, **kwargs):
+        return self.retrieve(request, *args, **kwargs)
