@@ -52,6 +52,9 @@ input[type=number]::-webkit-outer-spin-button {
 .workout set_id {
   display: none;
 }
+.workout .exercise {
+  text-transform: capitalize;
+}
 /*
  * Search
  */
