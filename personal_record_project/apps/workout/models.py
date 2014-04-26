@@ -20,6 +20,11 @@ class Set(models.Model):
     def __unicode__(self):
         return "%s %slbs for %s" % (self.exercise, self.weight, self.reps)
 
+    def save(self, **kwargs):
+        self.exercise = self.exercise.lower()
+
+        super(Set, self).save(**kwargs)
+
 
 class Workout(TimeStampedModel):
     user = models.ForeignKey(settings.AUTH_USER_MODEL)
