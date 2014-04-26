@@ -8,6 +8,9 @@ body {
 .row {
   max-width: 1200px;
 }
+.form-control {
+  padding: 6px;
+}
 /*
  * Header
  */

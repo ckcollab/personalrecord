@@ -34,9 +34,8 @@
 
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Link</a></li>
-                <li><a href="#">Link</a></li>
-                <li><a href="#">Link</a></li>
+                <li class="active"><a href="{% url 'home' %}">Records</a></li>
+                <li><a href="#">PR Ladder</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="active">
@@ -45,9 +44,9 @@
                 {% if request.user.is_authenticated %}
 
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ request.user.first_name }} <b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ request.user.first_name|default:request.user }} <b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li class="dropdown-header">{{ request.user.first_name }}</li>
+                            <li class="dropdown-header">{{ request.user.first_name|default:request.user }}</li>
                             <li><a href="#">My personal records</a></li>
                             <li class="divider"></li>
                             <li class="dropdown-header">Account</li>
