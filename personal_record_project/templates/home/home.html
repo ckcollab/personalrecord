@@ -22,7 +22,7 @@
 
         <div class="form-group">
             <label class="sr-only" for="order_by">Order by</label>
-            <select id="workout_order_by" name="order_by" class="form-control nothing_selected">
+            <select id="workout_order_by" name="ordering" class="form-control nothing_selected">
                 <option value="" disabled selected style="display: none;">Sort by</option>
                 <option value="-weight">Weight lifted desc</option>
                 <option value="weight">Weight lifted asc</option>
@@ -46,10 +46,13 @@
     <!--<img data-src="holder.js/320x180" class="thumbnail" alt="...">-->
 
     <div data-bind="foreach: workouts">
-        <div class="well">
-            <p data-bind="text: exercise"></p>
+        <div class="col-sm-4">
+            <div class="workout">
+                <set_id data-bind="text: id"></set_id>
+                <p data-bind="text: exercise"></p>
 
-            <p data-bind="text: weight"></p>
+                <p data-bind="text: weight"></p>
+            </div>
         </div>
     </div>
 

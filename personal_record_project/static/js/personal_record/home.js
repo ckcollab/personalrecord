@@ -1,24 +1,39 @@
 $(document).ready(function() {
+    var currently_searching = false;
+
     var home_view_model = {
         workouts: ko.observableArray()
     };
 
-    var create_search_string = function() {
+    var get_search_string = function() {
+        // This generates a string like name=taco&reps=3
         var str = $('#workout_search').serialize().toLowerCase();
         console.log(str);
-        return str;
+        return '?' + str;
+    };
+
+    var do_search = function() {
+        if(!currently_searching) {
+            get_set_list(get_search_string());
+        }
     };
 
     var get_set_list = function(search_string) {
         search_string = search_string || '';
 
+        currently_searching = true;
+
         $.get('api/set/' + search_string)
             .success(function(data) {
                 console.log(data);
                 home_view_model.workouts(data);
+
+                currently_searching = false;
             })
             .error(function() {
-                console.log('erra')
+                console.log('erra');
+
+                currently_searching = false;
             });
     };
 
@@ -32,14 +47,15 @@ $(document).ready(function() {
 
 
 
+    // Interactive handlers
     $('input[type="text"], input[type="number"]').each(function(i, obj){
         $(this).keyup(function() {
-            create_search_string();
+            do_search();
         });
     });
 
     $('.checkbox input').change(function() {
-        create_search_string();
+        do_search();
     });
 
     $('select').change(function() {
@@ -50,9 +66,14 @@ $(document).ready(function() {
             $(this).removeClass("nothing_selected");
         }
 
-        create_search_string();
+        do_search();
     });
 
+    $('.workout').click(function(){
+        $(this)
+    });
+
+    // Apply KnockoutJS binding
     ko.applyBindings(home_view_model);
 
     // Init
