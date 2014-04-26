@@ -4,8 +4,9 @@
 body {
   color: #a8a8a8;
   background-color: #0c0c0c;
-  font-family: 'Advent Pro', 'sans-serif';
+  font-family: 'Roboto', 'sans-serif';
   font-size: 18px;
+  letter-spacing: 1px;
 }
 .row {
   max-width: 1200px;
@@ -24,6 +25,9 @@ body {
 .navbar-inverse .navbar-collapse,
 .navbar-inverse .navbar-form {
   border-bottom: 1px solid #0c5669;
+}
+.navbar-brand {
+  letter-spacing: 0;
 }
 .navbar-brand .record {
   color: #1596b7;
