@@ -4,18 +4,29 @@
 body {
   color: #a8a8a8;
   background-color: #0c0c0c;
+  font-family: 'Advent Pro', 'sans-serif';
+  font-size: 18px;
 }
 .row {
   max-width: 1200px;
 }
 .form-control {
   padding: 6px;
+  background-color: #0b151d;
+  border-color: #0c5669;
 }
 /*
  * Header
  */
 .navbar-right {
   margin-right: 20px !important;
+}
+.navbar-inverse .navbar-collapse,
+.navbar-inverse .navbar-form {
+  border-bottom: 1px solid #0c5669;
+}
+.navbar-brand .record {
+  color: #1596b7;
 }
 /*
  * Content
