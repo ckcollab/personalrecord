@@ -4,10 +4,6 @@ from personal_record_project.apps.workout.models import Workout, Set
 
 
 class SetSerializer(serializers.ModelSerializer):
-    bodyweight = serializers.SerializerMethodField('get_bodyweight')
-
-    def get_bodyweight(self, obj):
-        return obj.workout.bodyweight
 
     class Meta:
         model = Set

@@ -9,6 +9,7 @@ class Set(models.Model):
     # record
     person = models.TextField(null=True, blank=True)
     workout = models.ForeignKey('workout.Workout', related_name='sets')
+    bodyweight = models.IntegerField()
     tags = models.TextField(null=True, blank=True)
     exercise = models.TextField()
     weight = models.FloatField()
@@ -19,10 +20,6 @@ class Set(models.Model):
 
     def __unicode__(self):
         return "%s %slbs for %s" % (self.exercise, self.weight, self.reps)
-
-    @property
-    def bodyweight(self):
-        return self.workout.bodyweight
 
     def save(self, **kwargs):
         self.exercise = self.exercise.lower()
