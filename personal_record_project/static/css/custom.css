@@ -37,6 +37,13 @@ input[type=number]::-webkit-outer-spin-button {
 .navbar-brand .record {
   color: #1596b7;
 }
+.navbar-brand .alpha {
+  font-size: 12px;
+  position: absolute;
+  left: 176px;
+  bottom: 4px;
+  color: #535f5b;
+}
 /*
  * Content
  */
