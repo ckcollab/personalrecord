@@ -105,7 +105,7 @@ $(document).ready(function() {
     ko.applyBindings(home_view_model);
 
     // Init
-    get_set_list();
+    get_set_list('?ordering=-weight');
 
     var url_params = getUrlVars();
 
