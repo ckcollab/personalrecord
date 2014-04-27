@@ -58,7 +58,7 @@
                             <li class="divider"></li>
                             <li class="dropdown-header">Account</li>
                             <li><a href="#">Settings</a></li>
-                            <li><a href="{% url 'auth:logout' %}">Logout</a></li>
+                            <li><a href="{% url 'auth:logout' %}?next=/">Logout</a></li>
                         </ul>
                     </li>
                 {% else %}
