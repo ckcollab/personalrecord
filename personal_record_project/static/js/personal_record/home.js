@@ -1,8 +1,7 @@
 $(document).ready(function() {
-    var currently_searching = false;
-    var backup_search_queued = false;
-
     var home_view_model = {
+        currently_searching: ko.observable(),
+        backup_search_queued: ko.observable(),
         workouts: ko.observableArray()
     };
 
@@ -21,13 +20,13 @@ $(document).ready(function() {
             return;
         }
 
-        if(!currently_searching) {
+        if(!home_view_model.currently_searching()) {
             get_set_list(get_search_string());
-        } else if(!backup_search_queued) {
-            backup_search_queued = true;
+        } else if(!home_view_model.backup_search_queued()) {
+            home_view_model.backup_search_queued(true);
             // make sure search ends in proper state, url matches form
             setTimeout(function() {
-                backup_search_queued = false;
+                home_view_model.backup_search_queued(false);
                 do_search();
             }, 500);
         }
@@ -37,25 +36,25 @@ $(document).ready(function() {
         search_string = search_string || location.search;
         url = 'api/set/' + search_string;
 
-        currently_searching = true;
+        home_view_model.currently_searching(true);
 
         $.get(url)
             .success(function(data) {
                 home_view_model.workouts(data);
 
-                //currently_searching = false;
+                home_view_model.currently_searching(false);
 
                 window.history.pushState({"content": $('#content').html()}, "Title", '/' + search_string);
             })
             .error(function() {
                 console.log('erra');
 
-                //currently_searching = false;
+                home_view_model.currently_searching(false);
             });
 
-        setTimeout(function() {
-            currently_searching = false;
-        }, 1500);
+        //setTimeout(function() {
+        //    home_view_model.currently_searching(false);
+        //}, 1500);
     };
 
 
