@@ -1,7 +1,7 @@
 from django.conf.urls import patterns, include, url
 from django.views.generic import TemplateView
 
-from .views import workout
+from .views import workout, account
 
 
 urlpatterns = patterns(
@@ -37,6 +37,13 @@ urlpatterns = patterns(
         r'^set/(?P<pk>[0-9]+)/$',
         workout.SetDetailView.as_view(),
         name='set_detail'
+    ),
+
+    # Account detail, GET PUT
+    url(
+        r'^account/(?P<pk>[0-9]+)/$',
+        account.AccountDetailView.as_view(),
+        name='account'
     ),
 )
 
