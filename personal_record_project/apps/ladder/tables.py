@@ -11,4 +11,3 @@ class SetTable(tables.Table):
         model = Set
         exclude = ('id', 'video_youtube_url', 'video_local_file_name', 'tags', 'workout')
         sequence = ('exercise', 'reps', 'weight', 'notes')
-        attrs = {"class": "paleblue"}

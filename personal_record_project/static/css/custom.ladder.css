@@ -1,0 +1,24 @@
+.ladder table {
+  width: 100%;
+}
+.ladder table thead th {
+  padding: 5px;
+}
+.ladder table thead th a {
+  padding-right: 20px;
+}
+.ladder table thead th.orderable.desc > a {
+  background: url(../img/arrow-active-down.png) right center no-repeat;
+}
+.ladder table thead th.orderable.asc > a {
+  background: url(../img/arrow-active-up.png) right center no-repeat;
+}
+.ladder table thead th.orderable > a {
+  background: url(../img/arrow-inactive-up.png) right center no-repeat;
+}
+.ladder table tbody td {
+  padding: 10px 5px;
+}
+.ladder table .odd {
+  background-color: rgba(21, 150, 183, 0.15);
+}

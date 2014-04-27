@@ -1,0 +1,34 @@
+.ladder {
+    table {
+        width: 100%;
+
+        thead {
+            th {
+                padding: 5px;
+                a {
+                    padding-right: 20px;
+                }
+            }
+        }
+
+        thead th.orderable.desc > a {
+            background: url(../img/arrow-active-down.png) right center no-repeat;
+        }
+        thead th.orderable.asc > a {
+            background: url(../img/arrow-active-up.png) right center no-repeat;
+        }
+        thead th.orderable > a {
+            background: url(../img/arrow-inactive-up.png) right center no-repeat;
+        }
+
+        tbody {
+            td {
+                padding: 10px 5px;
+            }
+        }
+
+        .odd {
+            background-color: hsla(192, 79%, 40%, 0.15);
+        }
+    }
+}
