@@ -11,6 +11,7 @@ from personal_record_project.apps.workout.models import Workout, Set
 
 from api.permissions import IsOwnerOrReadOnly
 from api.serializers.workout import WorkoutSerializer, SetSerializer
+from api.filters.workout import BodyweightFilter
 
 
 class WorkoutListView(generics.CreateAPIView, generics.ListAPIView, generics.GenericAPIView):
@@ -50,8 +51,7 @@ class WorkoutDetailView(mixins.RetrieveModelMixin,
 class SetListView(generics.ListAPIView):
     queryset = Set.objects.all()
     serializer_class = SetSerializer
-    #filter_class = SetFilter
-    filter_backends = (filters.DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter)
+    filter_backends = (filters.DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter, BodyweightFilter)
     filter_fields = ('exercise', 'reps', 'weight')
     search_fields = ('name', 'notes')
     ordering_fields = ('reps', 'weight')

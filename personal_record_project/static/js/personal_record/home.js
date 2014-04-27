@@ -105,12 +105,23 @@ $(document).ready(function() {
     ko.applyBindings(home_view_model);
 
     // Init
-    get_set_list('?ordering=-weight');
+    if(!location.search) {
+        get_set_list('?ordering=-weight');
+    } else {
+        get_set_list();
+    }
 
     var url_params = getUrlVars();
 
     for(param in url_params) {
         $('input[name="' + param + '"]').val(url_params[param]);
+        var select = $('select[name="' + param + '"]');
+
+        if(select) {
+            if(url_params[param] != '') {
+                select.val(url_params[param].replace("%2c", ",")).removeClass('nothing_selected')
+            }
+        }
     }
 
     $('.search_indicators').show();
