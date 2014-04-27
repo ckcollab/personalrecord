@@ -2,6 +2,7 @@ $(document).ready(function() {
     var home_view_model = {
         currently_searching: ko.observable(),
         backup_search_queued: ko.observable(),
+        search_error: ko.observable(),
         workouts: ko.observableArray()
     };
 
@@ -42,13 +43,13 @@ $(document).ready(function() {
             .success(function(data) {
                 home_view_model.workouts(data);
 
+                home_view_model.search_error(false);
                 home_view_model.currently_searching(false);
 
                 window.history.pushState({"content": $('#content').html()}, "Title", '/' + search_string);
             })
             .error(function() {
-                console.log('erra');
-
+                home_view_model.search_error(true);
                 home_view_model.currently_searching(false);
             });
 

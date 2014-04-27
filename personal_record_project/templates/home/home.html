@@ -45,7 +45,11 @@
         </div>
     </form>
 
-    <h1>Results <small data-bind="visible: currently_searching"><i class="fa fa-spinner"></i></small></h1>
+    <h1>
+        Results
+        <small data-bind="visible: currently_searching"><i class="fa fa-spinner"></i></small>
+        <small data-bind="visible: search_error" class="search_error"><i class="fa fa-bug"></i> search error!</small>
+    </h1>
 
     <!--<img data-src="holder.js/320x180" class="thumbnail" alt="...">-->
 
