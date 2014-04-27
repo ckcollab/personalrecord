@@ -2,14 +2,24 @@ import sys
 from fabric.api import local, hide
 
 def deploy():
-    local("git push")
-    local("git push heroku master")
+    _title_text(" Deploying")
+
+    with hide('running', 'stdout', 'output'):
+        sys.stdout.write("Pushing github...")
+        local("git push")
+        print "done"
+
+        sys.stdout.write("Pushing heroku...")
+        local("git push heroku master")
+        print "done"
+
+        sys.stdout.write("Running heroku migrations...")
+        local("heroku run python manage.py syncdb --migrate")
+        print "done"
+
 
 def fresh_db():
-    print "%" * 80
-    print " Starting from scratch!"
-    print "%" * 80
-    print ""
+    _title_text(" Starting from scratch!")
 
     with hide('running', 'stdout'):
         sys.stdout.write("Dropping database...")
@@ -28,3 +38,10 @@ def fresh_db():
         sys.stdout.write("Initializing facebook and admin...")
         local('python manage.py init')
         print "done"
+
+
+def _title_text(title):
+    print "%" * 80
+    print title
+    print "%" * 80
+    print ""
