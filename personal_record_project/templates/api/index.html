@@ -66,8 +66,55 @@
             <h2 style="margin-top: 80px;">Workout list and creation</h2>
             <pre>/api/workout</pre><b>GET POST</b><br> list workouts or create one
 
+            <br><br>
+
+            <p><b>Example response</b></p>
+            <pre>[
+    {
+        "id": 1,
+        "user": 1,
+        "bodyweight": 100,
+        "sets": [
+            {
+                "id": 1,
+                "person": "",
+                "bodyweight": 104,
+                "exercise": "back squat",
+                "weight": 245.0,
+                "reps": 8,
+                "notes": "",
+                "video_youtube_url": "",
+                "video_local_file_name": ""
+            }
+        ]
+    }
+]
+</pre>
+
             <h2 style="margin-top: 80px;">Workout details, update and deletion</h2>
-            <pre>/api/workout/&lt;id&gt;/</pre><b>GET PUT DELETE</b><br> modify a specific workout
+            <pre>/api/workout/&lt;id&gt;</pre><b>GET PUT DELETE</b><br> modify a specific workout
+            <br><br>
+
+            <p><b>Example response</b></p>
+            <pre>{
+    "id": 1,
+    "user": 1,
+    "bodyweight": 100,
+    "sets": [
+        {
+            "id": 1,
+            "person": "",
+            "bodyweight": 104,
+            "exercise": "back squat",
+            "weight": 245.0,
+            "reps": 8,
+            "notes": "",
+            "video_youtube_url": "",
+            "video_local_file_name": ""
+        }
+    ]
+}
+</pre>
 
             <h2 style="margin-top: 80px;">Set list</h2>
             <pre>/api/set</pre><b>GET</b><br> list sets
@@ -81,9 +128,45 @@
                 <li><b>?exercise=back%20skwat</b> get sets where the exercise was "back skwat" <i>(case sensitive)</i></li>
             </ul>
 
+            <br><br>
+
+            <p><b>Example response</b></p>
+                        <pre>[
+    {
+        "id": 3,
+        "person": "",
+        "bodyweight": 100,
+        "exercise": "back squat",
+        "weight": 295.0,
+        "reps": 5,
+        "notes": "",
+        "video_youtube_url": "",
+        "video_local_file_name": ""
+    }
+]</pre>
+
+
+
             <h2 style="margin-top: 80px;">Set details</h2>
-            <pre>/api/set/&lt;id&gt;/</pre>
+            <pre>/api/set/&lt;id&gt;</pre>
             <b>GET</b><br> details for a specific set
+
+            <br><br>
+
+            <p><b>Example response</b></p>
+                                    <pre>
+{
+    "id": 3,
+    "person": "",
+    "bodyweight": 100,
+    "exercise": "back squat",
+    "weight": 295.0,
+    "reps": 5,
+    "notes": "",
+    "video_youtube_url": "",
+    "video_local_file_name": ""
+}
+            </pre>
         </div>
 
 
