@@ -90,6 +90,9 @@ input[type=number]::-webkit-outer-spin-button {
 #workout_search .nothing_selected {
   color: #215e5c;
 }
+.search_indicators {
+  display: none;
+}
 .search_error {
   color: #a30000;
 }

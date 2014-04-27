@@ -112,6 +112,8 @@ $(document).ready(function() {
     for(param in url_params) {
         $('input[name="' + param + '"]').val(url_params[param]);
     }
+
+    $('.search_indicators').show();
 });
 
 function getFormObj(form_selector) {
