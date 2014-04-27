@@ -73,6 +73,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.static',
     'social.apps.django_app.context_processors.backends',
     'social.apps.django_app.context_processors.login_redirect',
+    'django.core.context_processors.request',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -106,6 +107,7 @@ BASE_AND_LIBRARY_APPS = (
     'raven.contrib.django.raven_compat',
     'south',
     'rest_framework',
+    'django_tables2',
 )
 
 PERSONAL_RECORD_APPS = (
@@ -113,7 +115,8 @@ PERSONAL_RECORD_APPS = (
     'home',
     'user_profile',
     'workout',
-    'api'
+    'api',
+    'ladder'
 )
 
 INSTALLED_APPS = BASE_AND_LIBRARY_APPS + PERSONAL_RECORD_APPS

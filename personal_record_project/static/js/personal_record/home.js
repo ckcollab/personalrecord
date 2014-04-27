@@ -1,5 +1,6 @@
 $(document).ready(function() {
     var currently_searching = false;
+    var backup_search_queued = false;
 
     var home_view_model = {
         workouts: ko.observableArray()
@@ -13,29 +14,50 @@ $(document).ready(function() {
     };
 
     var do_search = function() {
+        // Only search if we have enough input
+        var form = getFormObj('#workout_search');
+
+        if(form.weight && form.weight < 10) {
+            return;
+        }
+
         if(!currently_searching) {
             get_set_list(get_search_string());
+        } else if(!backup_search_queued) {
+            backup_search_queued = true;
+            // make sure search ends in proper state, url matches form
+            setTimeout(function() {
+                backup_search_queued = false;
+                do_search();
+            }, 500);
         }
     };
 
     var get_set_list = function(search_string) {
-        search_string = search_string || '';
+        search_string = search_string || location.search;
+        url = 'api/set/' + search_string;
 
         currently_searching = true;
 
-        $.get('api/set/' + search_string)
+        $.get(url)
             .success(function(data) {
-                console.log(data);
                 home_view_model.workouts(data);
 
-                currently_searching = false;
+                //currently_searching = false;
+
+                window.history.pushState({"content": $('#content').html()}, "Title", '/' + search_string);
             })
             .error(function() {
                 console.log('erra');
 
-                currently_searching = false;
+                //currently_searching = false;
             });
+
+        setTimeout(function() {
+            currently_searching = false;
+        }, 1500);
     };
+
 
 
 
@@ -51,6 +73,12 @@ $(document).ready(function() {
     $('input[type="text"], input[type="number"]').each(function(i, obj){
         $(this).keyup(function() {
             do_search();
+        });
+        $(this).keydown(function(event){
+            // on backspace
+            if(event.which == 8) {
+                do_search();
+            }
         });
     });
 
@@ -69,15 +97,21 @@ $(document).ready(function() {
         do_search();
     });
 
-    $('.workout').click(function(){
-        $(this)
-    });
+    //$('.workout').click(function(){
+    //    $(this)
+    //});
 
     // Apply KnockoutJS binding
     ko.applyBindings(home_view_model);
 
     // Init
     get_set_list();
+
+    var url_params = getUrlVars();
+
+    for(param in url_params) {
+        $('input[name="' + param + '"]').val(url_params[param]);
+    }
 });
 
 function getFormObj(form_selector) {
@@ -88,3 +122,20 @@ function getFormObj(form_selector) {
     });
     return formObj;
 }
+
+function getUrlVars() {
+    var vars = [], hash;
+    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+    for(var i = 0; i < hashes.length; i++)
+    {
+        hash = hashes[i].split('=');
+        vars[hash[0]] = hash[1];
+    }
+    return vars;
+}
+
+window.onpopstate = function(e){
+    if(e.state){
+        document.getElementById("content").innerHTML = e.state.content;
+    }
+};

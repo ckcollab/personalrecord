@@ -10,6 +10,7 @@ urlpatterns = patterns(
     url(r'^admin/', include(admin.site.urls)),
 
     url(r'^', include('home.urls')),
+    url(r'^', include('ladder.urls')),
 
     url(r'^api/', include('api.urls', namespace="api")),
 
