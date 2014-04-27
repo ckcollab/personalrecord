@@ -20,6 +20,10 @@ class Set(models.Model):
     def __unicode__(self):
         return "%s %slbs for %s" % (self.exercise, self.weight, self.reps)
 
+    @property
+    def bodyweight(self):
+        return self.workout.bodyweight
+
     def save(self, **kwargs):
         self.exercise = self.exercise.lower()
 
@@ -28,4 +32,4 @@ class Set(models.Model):
 
 class Workout(TimeStampedModel):
     user = models.ForeignKey(settings.AUTH_USER_MODEL)
-    pass
+    bodyweight = models.IntegerField()

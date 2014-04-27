@@ -10,10 +10,14 @@
         </div>
 
         <div class="form-group">
+            <label class="sr-only" for="bodyweight">Lifter's Weight</label>
+            <input type="number" class="form-control" name="bodyweight" placeholder="bodyweight">
+        </div>
+
+        <div class="form-group">
             <label class="sr-only" for="weight">Weight lifted</label>
             <input type="number" class="form-control" name="weight" placeholder="weight lifted">
         </div>
-
 
         <div class="form-group">
             <label class="sr-only" for="reps">Reps</label>
@@ -49,6 +53,9 @@
         <div class="col-sm-4">
             <div class="workout">
                 <set_id data-bind="text: id"></set_id>
+
+                <b>Bodyweight:</b><p class="bodyweight" data-bind="text: bodyweight"></p>
+
                 <b>Exercise:</b><p class="exercise" data-bind="text: exercise"></p>
 
                 <b>Weight:</b><p data-bind="text: weight"></p>

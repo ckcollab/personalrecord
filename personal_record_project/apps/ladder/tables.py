@@ -5,9 +5,9 @@ from workout.models import Workout, Set
 
 
 class SetTable(tables.Table):
-
+    bodyweight = tables.Column(verbose_name="bodyweight", accessor="bodyweight")
 
     class Meta:
         model = Set
         exclude = ('id', 'video_youtube_url', 'video_local_file_name', 'tags', 'workout')
-        sequence = ('exercise', 'reps', 'weight', 'notes')
+        sequence = ('bodyweight', 'exercise', 'reps', 'weight', 'notes')
