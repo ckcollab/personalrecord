@@ -52,7 +52,7 @@ class SetListView(generics.ListAPIView):
     queryset = Set.objects.all()
     serializer_class = SetSerializer
     filter_backends = (filters.DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter, BodyweightFilter)
-    filter_fields = ('exercise', 'reps', 'weight')
+    filter_fields = ('exercise', 'reps', 'weight', 'gender')
     search_fields = ('name', 'notes')
     ordering_fields = ('reps', 'weight')
 

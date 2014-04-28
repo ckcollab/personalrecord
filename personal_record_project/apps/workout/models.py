@@ -10,6 +10,7 @@ class Set(models.Model):
     person = models.TextField(null=True, blank=True)
     workout = models.ForeignKey('workout.Workout', related_name='sets')
     bodyweight = models.IntegerField()
+    gender = models.CharField(max_length=6, choices=((('male', 'male'), ('female', 'female'))))
     tags = models.TextField(null=True, blank=True)
     exercise = models.TextField()
     weight = models.FloatField()
@@ -30,3 +31,4 @@ class Set(models.Model):
 class Workout(TimeStampedModel):
     user = models.ForeignKey(settings.AUTH_USER_MODEL)
     bodyweight = models.IntegerField()
+    gender = models.CharField(max_length=6, choices=((('male', 'male'), ('female', 'female'))))

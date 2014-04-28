@@ -12,7 +12,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         exercises = ('back squat', 'deadlift', 'front squat', 'bench press')
-        workout = Workout.objects.get(pk=1)
+        workout = Workout.objects.get_or_create(user_id=1, pk=1, bodyweight=100, gender="male")[0]
 
         print "%" * 80
         print " Generating 200 lifts"
@@ -23,6 +23,7 @@ class Command(BaseCommand):
 
         for i in range(0, 200):
             new_set = Set.objects.create(
+                gender=random.choice(('male', 'female')),
                 exercise=random.choice(exercises),
                 bodyweight=random.randrange(80, 345),
                 weight=random.randrange(45, 765, 5),

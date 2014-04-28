@@ -59,6 +59,9 @@ input[type=number]::-webkit-outer-spin-button {
 .workout set_id {
   display: none;
 }
+.workout .gender {
+  text-transform: capitalize;
+}
 .workout .exercise {
   text-transform: capitalize;
 }

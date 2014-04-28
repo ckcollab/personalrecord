@@ -5,6 +5,15 @@
     <h1>Filters</h1>
     <form id="workout_search" class="form-inline" role="form">
         <div class="form-group">
+            <label class="sr-only" for="gender">Lifter's Gender</label>
+            <select class="form-control nothing_selected" name="gender">
+                <option value="">Lifter's gender</option>
+                <option>male</option>
+                <option>female</option>
+            </select>
+        </div>
+
+        <div class="form-group">
             <label class="sr-only" for="name">Lifter's Name</label>
             <input type="text" class="form-control" name="name" placeholder="Lifter's name">
         </div>
@@ -79,6 +88,8 @@
         <div class="col-sm-4">
             <div class="workout">
                 <set_id data-bind="text: id"></set_id>
+
+                <b>Gender:</b><p class="gender" data-bind="text: gender"></p>
 
                 <b>Bodyweight:</b><p class="bodyweight" data-bind="text: bodyweight"></p>
 
